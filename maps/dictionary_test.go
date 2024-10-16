@@ -47,7 +47,7 @@ func TestAdd(t *testing.T) {
 	})
 }
 
-func testUpdate(t *testing.T) {
+func TestUpdate(t *testing.T) {
 	word := "test"
 	definition := "this is just a test"
 	dictionary := Dictionary{word: definition}
