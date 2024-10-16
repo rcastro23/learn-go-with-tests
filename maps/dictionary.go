@@ -38,10 +38,10 @@ func (d Dictionary) Add(word, definition string) error {
 func (d Dictionary) Update(word, definition string) error {
 	_, err := d.Search(word)
 
-	switch err {
-	case ErrNotFound:
+	switch {
+	case errors.Is(err, ErrNotFound):
 		return ErrWordDoesNotExist
-	case nil:
+	case err == nil:
 		d[word] = definition
 	default:
 		return err
