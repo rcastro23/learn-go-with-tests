@@ -1,11 +1,12 @@
 package concurrency
 
 import (
+	"reflect"
 	"testing"
 	"time"
 )
 
-/*func mockWebsiteChecker(url string) bool {
+func mockWebsiteChecker(url string) bool {
 	return url != "waat://furhurterwe.geds"
 }
 
@@ -27,7 +28,7 @@ func TestCheckWebsites(t *testing.T) {
 	if !reflect.DeepEqual(want, got) {
 		t.Fatalf("wanted %v, got %v", want, got)
 	}
-}*/
+}
 
 func slowStubWebsiteChecker(_ string) bool {
 	time.Sleep(20 * time.Millisecond)
