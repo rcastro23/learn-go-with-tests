@@ -3,11 +3,7 @@ package main
 import "reflect"
 
 func walk(x interface{}, fn func(input string)) {
-	val := reflect.ValueOf(x)
-
-	if val.Kind() == reflect.Pointer {
-		val = val.Elem()
-	}
+	val := getValue(x)
 
 	for i := 0; i < val.NumField(); i++ {
 		field := val.Field(i)
@@ -21,20 +17,12 @@ func walk(x interface{}, fn func(input string)) {
 	}
 }
 
-/*func TestWalk(t *testing.T) {
+func getValue(x interface{}) reflect.Value {
+	val := reflect.ValueOf(x)
 
-	expected := "Chris"
-	var got []string
-
-	x := struct {
-		Name string
-	}{expected}
-
-	walk(x, func(input string) {
-		got = append(got, input)
-	})
-
-	if got[0] != expected {
-		t.Errorf("got %q, want %q", got[0], expected)
+	if val.Kind() == reflect.Pointer {
+		val = val.Elem()
 	}
-}*/
+
+	return val
+}
